@@ -2,12 +2,17 @@ package MATH485;
 import java.util.*;
 
 public class SKevaluation {
-    
+    SCombinator S;
+    KCombinator K;
+
+    public SKevaluation(){
+        S = new SCombinator();
+        K = new KCombinator();
+    }
+
     public static void main(String[] args){
         Scanner reader = new Scanner(System.in);
         SKevaluation sk = new SKevaluation();
-        SCombinator S = new SCombinator();
-        KCombinator K = new KCombinator();
 
         System.out.println("Enter your expression:");
         String expression = reader.nextLine();
@@ -19,10 +24,10 @@ public class SKevaluation {
                 char c = expression.charAt(i);
 
                 if(c == 'S'){
-                    copy += S.evaluate(expression.substring(i));
+                    copy += sk.S.evaluate(expression.substring(i));
                 }
                 else if(c == 'K'){
-                    copy += K.evaluate(expression.substring(i));
+                    copy += sk.K.evaluate(expression.substring(i));
                 }
                 else{
                     copy += Character.toString(c);

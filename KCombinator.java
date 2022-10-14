@@ -2,6 +2,9 @@ package MATH485;
 
 public class KCombinator {
 
+    public KCombinator(){
+    }
+
     public String evaluate(String s){
         String[] params = getParameters(s);
         int paramSize = params[0].length() + params[1].length();
