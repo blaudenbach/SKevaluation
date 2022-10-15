@@ -1,4 +1,3 @@
-package MATH485;
 
 public class SCombinator {
 
