@@ -5,15 +5,9 @@ public class SCombinator {
     }
 
     public String evaluate(String s){
-        String copyS = s;
-        int numOpen = copyS.length() - copyS.replace("(", "").length();
-        copyS = s;
-        int numClosed = copyS.length() - copyS.replace(")", "").length();
-        int extraClosed = numClosed- numOpen;
         String[] params = getParameters(s);
-        int paramSize = params[0].length() + params[1].length() + params[2].length();
-        String rest = s.substring(paramSize + extraClosed);
-        System.out.println("S eval -- rest:" + rest);
+        String rest = getRest(params, s);
+        //System.out.println("S eval -- rest:" + rest);
 
         return params[0] + params[2] + '(' + params[1] + params[2] + ')' + rest;
     }
@@ -24,7 +18,7 @@ public class SCombinator {
 
         for(int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
-            System.out.println("S -- char:" + c);
+            //System.out.println("S -- char:" + c);
 
             if(c == ')'){
                 continue;
@@ -37,12 +31,12 @@ public class SCombinator {
 
                 while(closed < open){
                     char p = s.charAt(pos);
-                    System.out.println("S while -- char:" + p);
+                    //System.out.println("S while -- char:" + p);
 
                     if((p == '(') && (pos == i)){
                         obj += p;
                         pos++;
-                        System.out.println("S -- obj, pos, open, closed: " + obj + Integer.toString(pos-1) + Integer.toString(open) + Integer.toString(closed));
+                        //System.out.println("S -- obj, pos, open, closed: " + obj + Integer.toString(pos-1) + Integer.toString(open) + Integer.toString(closed));
                         continue;
                     }
                     else if(p == '('){
@@ -54,19 +48,19 @@ public class SCombinator {
 
                     obj += p;
                     pos++;
-                    System.out.println("S -- obj, pos, open, closed: " + obj + Integer.toString(pos-1) + Integer.toString(open) + Integer.toString(closed));
+                    //System.out.println("S -- obj, pos, open, closed: " + obj + Integer.toString(pos-1) + Integer.toString(open) + Integer.toString(closed));
                 }
 
                 params[count] = obj;
                 count++;
                 i += obj.length() - 1;
 
-                System.out.println("S -- param, count: " + params[count-1] + Integer.toString(count));
+                System.out.println("S -- param, count: " + params[count-1] + ", " + Integer.toString(count));
             }
             else{
                 params[count] = Character.toString(c);
                 count++;
-                System.out.println("S -- param, count: " + params[count-1] + Integer.toString(count));
+                System.out.println("S -- param, count: " + params[count-1] + ", " + Integer.toString(count));
             }
 
             if(count == 3){
@@ -76,4 +70,49 @@ public class SCombinator {
 
         return params;
     }
+
+    public String getRest(String[] p, String s){
+        int index;
+
+        //Get index of last parameter
+        if(p[2] != p[0]){
+            if(p[2] != p[1]){
+                index = s.indexOf(p[2]) + p[2].length();
+            }
+            else{
+                int tempIndex = s.indexOf(p[1]) + p[1].length();
+                index = s.indexOf(p[2], tempIndex) + p[2].length();
+            }
+        }
+        else{
+            if(p[2] != p[1]){
+                int tempIndex = s.indexOf(p[0]) + p[0].length();
+                index = s. indexOf(p[2], tempIndex) + p[2].length();
+            }
+            else{
+                int tempIndex = s.indexOf(p[0]) + p[0].length();
+                tempIndex = s.indexOf(p[1], tempIndex) + p[1].length();
+                index = s.indexOf(p[2], tempIndex) + p[2].length();
+            }
+        }
+
+
+        if(index >= s.length()){
+            return "";
+        }
+
+        //Remove extra closed parentheses starting at index
+        String rest = s.substring(index);
+        StringBuilder sb = new StringBuilder(rest);
+        while(sb.toString().charAt(0) == ')'){
+            sb.deleteCharAt(0);
+            if(sb.toString().length() == 0){
+                break;
+            }
+        }
+
+        return sb.toString();
+
+    }
+
 }
