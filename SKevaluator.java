@@ -20,22 +20,25 @@ public class SKevaluator{
 
                 if(c == 'S'){
                     copy += S.evaluate(expression.getExpression().substring(i+1));
-                    System.out.println("eval -- " + copy);
+                    //System.out.println("eval -- " + copy);
                     break;
                 }
                 else if(c == 'K'){
                     copy += K.evaluate(expression.getExpression().substring(i+1));
-                    System.out.println("eval -- " + copy);
+                    //System.out.println("eval -- " + copy);
                     break;
                 }
                 else{
                     copy += Character.toString(c);
-                    System.out.println("eval -- " + copy);
+                    //System.out.println("eval -- " + copy);
                 }
             }
 
             expression.setExpression(copy);
         }
+
+        expression.finalize();
+
         return expression.getExpression();
     }
 }

@@ -55,12 +55,12 @@ public class KCombinator {
                 count++;
                 i += obj.length() - 1;
 
-                System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
+                //System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
             }
             else{
                 params[count] = Character.toString(c);
                 count++;
-                System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
+                //System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
             }
 
             if(count == 2){
