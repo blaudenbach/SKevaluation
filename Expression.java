@@ -43,4 +43,57 @@ public class Expression {
         }
 
     }
+
+    String getFirst(){
+        String first = "";
+
+        for(int i = 0; i < expression.length(); i++){
+            char c = expression.charAt(i);
+
+            if(c == ')'){
+                continue;
+            }
+            else if(c == '('){
+                int open = 1;
+                int closed = 0;
+                String obj = "";
+                int pos = i;
+
+                while(closed < open){
+                    char p = expression.charAt(pos);
+
+                    if(p == '(' && pos == i){
+                        obj += p;
+                        pos ++;
+                        continue;
+                    }
+                    else if(p == '('){
+                        open++;
+                    }
+                    else if(p ==')'){
+                        closed++;
+                    }
+
+                    obj += p;
+                    pos++;
+                }
+
+                return obj;
+            }
+            else{
+                return Character.toString(c);
+            }
+        }
+
+        return first;
+    }
+
+    String getRest(){
+        String first = this.getFirst();
+        int firstLoc = expression.indexOf(first);
+        int restLoc = firstLoc + first.length();
+        String rest = expression.substring(restLoc);
+        
+        return rest;
+    }
 }
