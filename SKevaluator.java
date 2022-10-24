@@ -128,6 +128,13 @@ public class SKevaluator{
             }
         }
 
+        //If count is 1, remove unneccessary parentheses
+        if(count == 1){
+            if(params[0].charAt(0) == '('){
+                params[0] = params[0].substring(1, params[0].length() - 2);
+            }
+        }
+
         //Return correct combinator expression
         Expression outExp = new Expression();
         System.out.println("Number of parameters: " + Integer.toString(count));
@@ -145,6 +152,7 @@ public class SKevaluator{
             else{
                 String first = outExp.getFirst();
                 String rest = outExp.getRest();
+
                 System.out.println("while -- first: " + first);
                 System.out.println("while -- rest: " + rest);
 
