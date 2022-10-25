@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class SKevaluator{
     SCombinator S;
     KCombinator K;
@@ -129,16 +131,21 @@ public class SKevaluator{
         }
 
         //If count is 1, remove unneccessary parentheses
-        if(count == 1){
+        if(count == 1 && params[0].length() == 3){
             if(params[0].charAt(0) == '('){
                 params[0] = params[0].substring(1, params[0].length() - 2);
             }
         }
 
+        //Remove unneccessary parentheses from out
+        if(out.length() == 3 && out.charAt(0) == '('){
+            out = out.substring(1, 1);
+        }
+
         //Return correct combinator expression
         Expression outExp = new Expression();
         System.out.println("Number of parameters: " + Integer.toString(count));
-        System.out.println("params Array: " + params.toString());
+        System.out.println("params Array: " + Arrays.toString(params));
         while(count > 0){
             outExp.setExpression(out);
             System.out.println("while -- out: " + out);
@@ -152,6 +159,14 @@ public class SKevaluator{
             else{
                 String first = outExp.getFirst();
                 String rest = outExp.getRest();
+
+                while(rest.equals("")){
+                    out = out.substring(1, out.length() - 1);
+                    outExp.setExpression(out);
+                    System.out.println("New out: " + out);
+                    first = outExp.getFirst();
+                    rest = outExp.getRest();
+                }
 
                 System.out.println("while -- first: " + first);
                 System.out.println("while -- rest: " + rest);
