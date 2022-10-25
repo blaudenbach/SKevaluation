@@ -133,13 +133,13 @@ public class SKevaluator{
         //If count is 1, remove unneccessary parentheses
         if(count == 1 && params[0].length() == 3){
             if(params[0].charAt(0) == '('){
-                params[0] = params[0].substring(1, params[0].length() - 2);
+                params[0] = params[0].substring(1, params[0].length() - 1);
             }
         }
 
         //Remove unneccessary parentheses from out
         if(out.length() == 3 && out.charAt(0) == '('){
-            out = out.substring(1, 1);
+            out = out.substring(1, 2);
         }
 
         //Return correct combinator expression
@@ -174,6 +174,7 @@ public class SKevaluator{
                 combExp = "S(" + findCombinator(params[count - 1], first) + ")(" + findCombinator(params[count - 1], rest) + ")";
             }
             count--;
+            System.out.println("In: " + in + ", Out: " + out + ", combExp: " + combExp + ", count: " + Integer.toString(count));
             out = combExp;
         }
 
