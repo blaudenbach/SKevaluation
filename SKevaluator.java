@@ -18,21 +18,21 @@ public class SKevaluator{
 
             for(int i = 0; i < expression.getExpression().length(); i++){
                 char c = expression.getExpression().charAt(i);
-                //System.out.println(c);
+                System.out.println(c);
 
                 if(c == 'S'){
                     copy += S.evaluate(expression.getExpression().substring(i+1));
-                    //System.out.println("eval -- " + copy);
+                    System.out.println("eval -- " + copy);
                     break;
                 }
                 else if(c == 'K'){
                     copy += K.evaluate(expression.getExpression().substring(i+1));
-                    //System.out.println("eval -- " + copy);
+                    System.out.println("eval -- " + copy);
                     break;
                 }
                 else{
                     copy += Character.toString(c);
-                    //System.out.println("eval -- " + copy);
+                    System.out.println("eval -- " + copy);
                 }
             }
 
@@ -138,8 +138,32 @@ public class SKevaluator{
         }
 
         //Remove unneccessary parentheses from out
-        if(out.length() == 3 && out.charAt(0) == '('){
-            out = out.substring(1, 1);
+        if(out.charAt(0) == '('){
+            int open = 1;
+            int closed = 0;
+            int pos = 0;
+
+            while(closed < open){
+                char p = out.charAt(pos);
+
+                if(p == '(' && pos == 0){
+                    pos++;
+                    continue;
+                }
+                else if(p == '('){
+                    open++;
+                }
+                else if(p == ')'){
+                    closed++;
+                }
+
+                pos++;
+            }
+
+            if(pos == out.length()){
+                out = out.substring(1, pos - 1);
+            }
+
         }
 
         //Return correct combinator expression
