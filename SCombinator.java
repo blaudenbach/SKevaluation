@@ -1,7 +1,12 @@
 
 public class SCombinator {
+    SKevaluator evaluator;
 
     public SCombinator(){
+    }
+
+    public SCombinator(SKevaluator sk){
+        evaluator = sk;
     }
 
     public String evaluate(String s){
@@ -9,7 +14,7 @@ public class SCombinator {
         String rest = getRest(params, s);
         System.out.println("S eval -- rest:" + rest);
 
-        return params[0] + params[2] + '(' + params[1] + params[2] + ')' + rest;
+        return params[0] + params[2] + '(' + evaluator.evaluate(params[1] + params[2]) + ')' + rest;
     }
 
     public String[] getParameters(String s){
@@ -18,7 +23,7 @@ public class SCombinator {
 
         for(int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
-            System.out.println("S -- char:" + c);
+            //System.out.println("S -- char:" + c);
 
             if(c == ')'){
                 continue;
@@ -31,12 +36,12 @@ public class SCombinator {
 
                 while(closed < open){
                     char p = s.charAt(pos);
-                    System.out.println("S while -- char:" + p);
+                    //System.out.println("S while -- char:" + p);
 
                     if((p == '(') && (pos == i)){
                         obj += p;
                         pos++;
-                        System.out.println("S -- obj, pos, open, closed: " + obj + Integer.toString(pos-1) + Integer.toString(open) + Integer.toString(closed));
+                        //System.out.println("S -- obj, pos, open, closed: " + obj + Integer.toString(pos-1) + Integer.toString(open) + Integer.toString(closed));
                         continue;
                     }
                     else if(p == '('){
@@ -48,7 +53,7 @@ public class SCombinator {
 
                     obj += p;
                     pos++;
-                    System.out.println("S -- obj, pos, open, closed: " + obj + Integer.toString(pos-1) + Integer.toString(open) + Integer.toString(closed));
+                    //System.out.println("S -- obj, pos, open, closed: " + obj + Integer.toString(pos-1) + Integer.toString(open) + Integer.toString(closed));
                 }
 
                 params[count] = obj;

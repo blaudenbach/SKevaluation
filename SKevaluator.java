@@ -6,7 +6,7 @@ public class SKevaluator{
     Expression expression;
 
     public SKevaluator(){
-        S = new SCombinator();
+        S = new SCombinator(this);
         K = new KCombinator();
         expression = new Expression();
     }
@@ -14,6 +14,7 @@ public class SKevaluator{
     public String evaluate(String expr){
         expression.setExpression(expr);
         while(expression.containsSK()){
+            System.out.println("eval starting exp -- " + expression.getExpression());
             String copy = "";
 
             for(int i = 0; i < expression.getExpression().length(); i++){
@@ -25,6 +26,8 @@ public class SKevaluator{
                         copy += S.evaluate(expression.getExpression().substring(i+1));
                     }
                     catch(NullPointerException e){
+                        expression.finalize();
+                        System.out.println("Initial expression " + expr + " evaluated as: " + expression.getExpression());
                         return expression.getExpression();
                     }
                     System.out.println("eval -- " + copy);
@@ -35,6 +38,8 @@ public class SKevaluator{
                         copy += K.evaluate(expression.getExpression().substring(i+1));
                     }
                     catch(NullPointerException e){
+                        expression.finalize();
+                        System.out.println("Initial expression " + expr + " evaluated as: " + expression.getExpression());
                         return expression.getExpression();
                     }
                     System.out.println("eval -- " + copy);
@@ -50,6 +55,8 @@ public class SKevaluator{
         }
 
         expression.finalize();
+
+        System.out.println("Initial expression " + expr + " evaluated as: " + expression.getExpression());
 
         return expression.getExpression();
     }
