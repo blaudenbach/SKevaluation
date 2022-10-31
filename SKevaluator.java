@@ -21,12 +21,22 @@ public class SKevaluator{
                 System.out.println(c);
 
                 if(c == 'S'){
-                    copy += S.evaluate(expression.getExpression().substring(i+1));
+                    try{
+                        copy += S.evaluate(expression.getExpression().substring(i+1));
+                    }
+                    catch(NullPointerException e){
+                        return expression.getExpression();
+                    }
                     System.out.println("eval -- " + copy);
                     break;
                 }
                 else if(c == 'K'){
-                    copy += K.evaluate(expression.getExpression().substring(i+1));
+                    try{
+                        copy += K.evaluate(expression.getExpression().substring(i+1));
+                    }
+                    catch(NullPointerException e){
+                        return expression.getExpression();
+                    }
                     System.out.println("eval -- " + copy);
                     break;
                 }
