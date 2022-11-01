@@ -11,21 +11,29 @@ public class SCombinator {
 
     public String evaluate(String s){
         String[] params = getParameters(s);
-        String rest = getRest(params, s);
-        System.out.println("S eval -- rest:" + rest);
 
-        return params[0] + params[2] + '(' + evaluator.evaluate(params[1] + params[2]) + ')' + rest;
+        if(params == null){
+            return "";
+        }
+        else{
+            String rest = getRest(params, s);
+            System.out.println("S eval -- rest:" + rest);
+            return params[0] + params[2] + '(' + evaluator.evaluate(params[1] + params[2]) + ')' + rest;
+        }
     }
 
     public String[] getParameters(String s){
         String[] params = new String [3];
         int count = 0;
+        int totalOpen = 0;
+        int totalClosed = 0;
 
         for(int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
             //System.out.println("S -- char:" + c);
 
             if(c == ')'){
+                totalClosed++;
                 continue;
             }
             else if(c == '('){
@@ -33,6 +41,7 @@ public class SCombinator {
                 int closed = 0;
                 String obj = "";
                 int pos = i;
+                totalOpen++;
 
                 while(closed < open){
                     char p = s.charAt(pos);
@@ -45,9 +54,11 @@ public class SCombinator {
                         continue;
                     }
                     else if(p == '('){
+                        totalOpen++;
                         open++;
                     }
                     else if(p == ')'){
+                        totalClosed++;
                         closed++;
                     }
 
@@ -66,6 +77,10 @@ public class SCombinator {
                 params[count] = Character.toString(c);
                 count++;
                 System.out.println("S -- param, count: " + params[count-1] + ", " + Integer.toString(count));
+            }
+
+            if(totalClosed > totalOpen){
+                return null;
             }
 
             if(count == 3){

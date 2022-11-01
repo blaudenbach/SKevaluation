@@ -22,28 +22,32 @@ public class SKevaluator{
                 System.out.println(c);
 
                 if(c == 'S'){
-                    try{
-                        copy += S.evaluate(expression.getExpression().substring(i+1));
+                    String eval = S.evaluate(expression.getExpression().substring(i+1));
+
+                    if(eval.equals("")){
+                        copy += Character.toString(c);
+                        System.out.println("eval empty");
+                        continue;
                     }
-                    catch(NullPointerException e){
-                        expression.finalize();
-                        System.out.println("Initial expression " + expr + " evaluated as: " + expression.getExpression());
-                        return expression.getExpression();
+                    else{
+                        copy += eval;
+                        System.out.println("eval -- " + copy);
+                        break;
                     }
-                    System.out.println("eval -- " + copy);
-                    break;
                 }
                 else if(c == 'K'){
-                    try{
-                        copy += K.evaluate(expression.getExpression().substring(i+1));
+                    String eval = K.evaluate(expression.getExpression().substring(i+1));
+
+                    if(eval.equals("")){
+                        copy += Character.toString(c);
+                        System.out.println("eval empty");
+                        continue;
                     }
-                    catch(NullPointerException e){
-                        expression.finalize();
-                        System.out.println("Initial expression " + expr + " evaluated as: " + expression.getExpression());
-                        return expression.getExpression();
+                    else{
+                        copy += eval;
+                        System.out.println("eval -- " + copy);
+                        break;
                     }
-                    System.out.println("eval -- " + copy);
-                    break;
                 }
                 else{
                     copy += Character.toString(c);
@@ -52,6 +56,11 @@ public class SKevaluator{
             }
 
             expression.setExpression(copy);
+
+            if(expression.getExpression().equals(expr)){
+                expression.finalize();
+                return expression.getExpression();
+            }
         }
 
         expression.finalize();
