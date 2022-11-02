@@ -7,32 +7,24 @@ public class KCombinator {
     public String evaluate(String s){
         String[] params = getParameters(s);
 
-        if(params == null){
-            return "";
-        }
-        else{
-            String rest = getRest(params, s);
-            System.out.println("K eval -- rest:" + rest);
-            return params[0] + rest;
-        }
+        String rest = getRest(params, s);
+        System.out.println("K eval -- rest:" + rest);
+        return params[0] + rest;
+
     }
 
     public String[] getParameters(String s){
         String[] params = new String [2];
         int count = 0;
-        int totalOpen = 0;
-        int totalClosed = 0;
 
         for(int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
             //System.out.println("K -- char : " + c);
 
             if(c == ')'){
-                totalClosed++;
                 continue;
             }
             else if(c == '('){
-                totalOpen++;
                 int open = 1;
                 int closed = 0;
                 String obj = "";
@@ -49,11 +41,9 @@ public class KCombinator {
                         continue;
                     }
                     else if(p == '('){
-                        totalOpen++;
                         open++;
                     }
                     else if(p == ')'){
-                        totalClosed++;
                         closed++;
                     }
 
@@ -72,10 +62,6 @@ public class KCombinator {
                 params[count] = Character.toString(c);
                 count++;
                 System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
-            }
-
-            if(totalClosed > totalOpen){
-                return null;
             }
 
             if(count == 2){

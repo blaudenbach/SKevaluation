@@ -47,12 +47,15 @@ public class Expression {
     String getFirst(){
         String first = "";
 
+        //Iterate through expression and grab first argument
+        //Is either 1 character or characters inside a pair of parentheses
         for(int i = 0; i < expression.length(); i++){
             char c = expression.charAt(i);
 
             if(c == ')'){
                 continue;
             }
+            //Copy everything inside parentheses
             else if(c == '('){
                 int open = 1;
                 int closed = 0;
@@ -89,9 +92,13 @@ public class Expression {
     }
 
     String getRest(){
+        //Get's first argument
         String first = this.getFirst();
+        //Gets location of first argument
         int firstLoc = expression.indexOf(first);
+        //Uses firstLoc and length of first argument to find location of rest
         int restLoc = firstLoc + first.length();
+        //Forms substring which represents the rest of the expression
         String rest = expression.substring(restLoc);
         
         return rest;
