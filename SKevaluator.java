@@ -228,23 +228,23 @@ public class SKevaluator{
             else{
                 //We need a way to be consistent in our choice of what is A and what is B
                 //I opted for the first argument in the out expression to be A and what remains to be B
+                String second = outExp.getSecond();
                 String first = outExp.getFirst();
-                String rest = outExp.getRest();
 
                 //If the rest is empty, first is contained in a pair of parentheses, so we must delete the parentheses and re-evaluate until we have something for first and rest
-                while(rest.equals("")){
+                while(first.equals("")){
                     out = out.substring(1, out.length() - 1);
                     outExp.setExpression(out);
                     System.out.println("New out: " + out);
+                    second = outExp.getSecond();
                     first = outExp.getFirst();
-                    rest = outExp.getRest();
                 }
 
                 System.out.println("while -- first: " + first);
-                System.out.println("while -- rest: " + rest);
+                System.out.println("while -- second: " + second);
 
                 //Our combinatory is S(X1)(X2), as explained above
-                combExp = "S(" + findCombinator(args[count - 1], first) + ")(" + findCombinator(args[count - 1], rest) + ")";
+                combExp = "S(" + findCombinator(args[count - 1], first) + ")(" + findCombinator(args[count - 1], second) + ")";
             }
 
             //Decrease count, so next argument is considered
