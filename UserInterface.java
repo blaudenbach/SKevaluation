@@ -8,6 +8,7 @@ public class UserInterface {
         System.out.println("Enter your choice:");
         System.out.println("1 - Evaluate an expresion");
         System.out.println("2 - Form a combinator expression");
+        System.out.println("3 - Read positions from a data file");
         System.out.println("0 - Exit");
         int choice = Integer.parseInt(reader.nextLine());
         while((choice == 1) || (choice == 2)){
@@ -26,10 +27,17 @@ public class UserInterface {
 
                 System.out.println("Combinator expression: " + sk.findCombinator(input, output));
             }
+            else if(choice == 3){
+                System.out.println("Enter input filename:");
+                String filename = reader.nextLine();
+
+                System.out.println("Results have been stored in the file: " + sk.readFile(filename));
+            }
 
             System.out.println("Enter your choice:");
             System.out.println("1 - Evaluate an expresion");
             System.out.println("2 - Form a combinator expression");
+            System.out.println("3 - Read positions from a data file");
             System.out.println("0 - Exit");
             choice = Integer.parseInt(reader.nextLine());
         }

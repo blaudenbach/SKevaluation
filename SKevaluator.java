@@ -68,7 +68,7 @@ public class SKevaluator{
         return expression.getExpression();
     }
 
-    String findCombinator(String in, String out){
+    public String findCombinator(String in, String out){
         int count = 0;
         String combExp = "";
 
@@ -259,4 +259,13 @@ public class SKevaluator{
         //After all arguments have been considered, we return our complete expression
         return combExp;
     }
+
+    public String readFile(String inName){
+        String outName = "results.txt";
+
+
+
+        return outName;
+    }
+
 }

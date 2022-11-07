@@ -44,7 +44,7 @@ public class Expression {
 
     }
 
-    String getSecond(){
+    public String getSecond(){
         String second = "";
 
         //Iterate through expression and grab last argument
@@ -97,7 +97,7 @@ public class Expression {
         return second;
     }
 
-    String getFirst(){
+    public String getFirst(){
         //Get's last argument
         String second = this.getSecond();
         System.out.println("getFirst() -- second = " + second);
@@ -110,4 +110,23 @@ public class Expression {
         
         return first;
     }
+
+    public boolean containsParenthesis(){
+        return (expression.contains("(")) || (expression.contains(")"));
+    }
+
+    public void deparenthesize(){
+        while(containsParenthesis()){
+            for(int i = 0; i < expression.length(); i++){
+                char c = expression.charAt(i);
+                if(c == '(' || c == ')'){
+                    StringBuilder sb = new StringBuilder(expression);
+                    sb.deleteCharAt(i);
+                    expression = sb.toString();
+                    break;
+                }
+            }
+        }
+    }
+
 }
