@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class SKevaluator{
     SCombinator S;
@@ -262,8 +263,28 @@ public class SKevaluator{
 
     public String readFile(String inName){
         String outName = "results.txt";
+        BufferedReader reader;
 
+        try{
+            reader = new BufferedReader(new FileReader(inName));
+            File outFile = new File(outName);
+            outFile.createNewFile();
+            FileWriter writer = new FileWriter(outFile);
 
+            String line = reader.readLine();
+
+            while(line != null){
+                writer.write(line + "\n");
+
+                line = reader.readLine();
+            }
+
+            reader.close();
+            writer.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
 
         return outName;
     }
