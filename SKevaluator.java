@@ -1,4 +1,4 @@
-import java.util.*;
+//import java.util.*;
 import java.io.*;
 
 public class SKevaluator{
@@ -271,16 +271,58 @@ public class SKevaluator{
             outFile.createNewFile();
             FileWriter writer = new FileWriter(outFile);
 
+            int lineNum = 1;
             String line = reader.readLine();
 
             while(line != null){
                 //Parse line
+                int i1 = line.indexOf('|');
+                int i3 = line.lastIndexOf('|');
+                int i2 = line.indexOf('|', i1 + 1);
+                String pos = line.substring(i1 + 1, i2);
+                int prevPosNum;
+                
+                if(lineNum == 1){
+                    prevPosNum = -1;
+                }
+                else{
+                    prevPosNum = Integer.parseInt(line.substring(i2 + 1, i3));
+                }
 
+                //Get previous position
+                String prevPos = "";
+                BufferedReader tempReader;
+                if(prevPosNum == -1){
+                    prevPos = "-";
+                }
+                else{
+                    tempReader = new BufferedReader(new FileReader(inName));
+                    String tempLine = tempReader.readLine();
 
+                    while(tempLine != null){
+                        //Parse line
+                        int temp1 = tempLine.indexOf('|');
+                        int temp2 = tempLine.indexOf('|', temp1 + 1);
+                        int tempPosNum = Integer.parseInt(tempLine.substring(0, temp1));
+                        String tempPos = tempLine.substring(temp1 + 1, temp2);
 
-                writer.write(line + "\n");
+                        if(tempPosNum == prevPosNum){
+                            prevPos = tempPos;
+                            break;
+                        }
+
+                        tempLine = tempReader.readLine();
+                    }
+
+                    tempReader.close();
+                }
+
+                String combinator = this.findCombinator(prevPos, pos);
+
+                writer.write(combinator + "|" + prevPos + "|" + pos + "|\n");
 
                 line = reader.readLine();
+                lineNum++;
             }
 
             reader.close();
