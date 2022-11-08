@@ -13,7 +13,7 @@ public class SCombinator {
         String[] params = getParameters(s);
 
         String rest = getRest(params, s);
-        System.out.println("S eval -- rest:" + rest);
+        //System.out.println("S eval -- rest:" + rest);
         return params[0] + params[2] + '(' + evaluator.evaluate(params[1] + params[2]) + ')' + rest;
     }
 
@@ -60,12 +60,12 @@ public class SCombinator {
                 count++;
                 i += obj.length() - 1;
 
-                System.out.println("S -- param, count: " + params[count-1] + ", " + Integer.toString(count));
+                //System.out.println("S -- param, count: " + params[count-1] + ", " + Integer.toString(count));
             }
             else{
                 params[count] = Character.toString(c);
                 count++;
-                System.out.println("S -- param, count: " + params[count-1] + ", " + Integer.toString(count));
+                //System.out.println("S -- param, count: " + params[count-1] + ", " + Integer.toString(count));
             }
 
             if(count == 3){

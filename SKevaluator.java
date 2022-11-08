@@ -15,12 +15,12 @@ public class SKevaluator{
     public String evaluate(String expr){
         expression.setExpression(expr);
         while(expression.containsSK()){
-            System.out.println("eval starting exp -- " + expression.getExpression());
+            //System.out.println("eval starting exp -- " + expression.getExpression());
             String copy = "";
 
             for(int i = 0; i < expression.getExpression().length(); i++){
                 char c = expression.getExpression().charAt(i);
-                System.out.println(c);
+                //System.out.println(c);
 
                 if(c == 'S'){
                     try{
@@ -28,11 +28,11 @@ public class SKevaluator{
                     }
                     catch(NullPointerException e){
                         expression.finalize();
-                        System.out.println("Initial expression " + expr + " evalutated as: " + expression.getExpression());
+                        //System.out.println("Initial expression " + expr + " evalutated as: " + expression.getExpression());
                         return expression.getExpression();
                     }
 
-                    System.out.println("eval -- " + copy);
+                    //System.out.println("eval -- " + copy);
                     break;
                 }
                 else if(c == 'K'){
@@ -41,16 +41,16 @@ public class SKevaluator{
                     }
                     catch(NullPointerException e){
                         expression.finalize();
-                        System.out.println("Initial expression " + expr + " evalutated as: " + expression.getExpression());
+                        //System.out.println("Initial expression " + expr + " evalutated as: " + expression.getExpression());
                         return expression.getExpression();
                     }
 
-                    System.out.println("eval -- " + copy);
+                    //System.out.println("eval -- " + copy);
                     break;
                 }
                 else{
                     copy += Character.toString(c);
-                    System.out.println("eval -- " + copy);
+                    //System.out.println("eval -- " + copy);
                 }
             }
 
@@ -64,7 +64,7 @@ public class SKevaluator{
 
         expression.finalize();
 
-        System.out.println("Initial expression " + expr + " evaluated as: " + expression.getExpression());
+        //System.out.println("Initial expression " + expr + " evaluated as: " + expression.getExpression());
 
         return expression.getExpression();
     }
@@ -207,14 +207,14 @@ public class SKevaluator{
         //All System.out.println calls are strictly for debugging
         //Create Expression object, so we can use it's methods
         Expression outExp = new Expression();
-        System.out.println("Number of parameters: " + Integer.toString(count));
-        System.out.println("params Array: " + Arrays.toString(args));
+        //System.out.println("Number of parameters: " + Integer.toString(count));
+        //System.out.println("params Array: " + Arrays.toString(args));
         //Continues until all arguments x1,x2,...,xn have been considered
         while(count > 0){
             //Set the expression we wish to form
             outExp.setExpression(out);
-            System.out.println("while -- out: " + out);
-            System.out.println("while -- params[count - 1]: " + args[count - 1]);
+            //System.out.println("while -- out: " + out);
+            //System.out.println("while -- params[count - 1]: " + args[count - 1]);
             //If out is equal to the argument being considered, return identity
             if(out.equals(args[count - 1])){
                 combExp = "SKK";
@@ -236,13 +236,13 @@ public class SKevaluator{
                 while(first.equals("")){
                     out = out.substring(1, out.length() - 1);
                     outExp.setExpression(out);
-                    System.out.println("New out: " + out);
+                    //System.out.println("New out: " + out);
                     second = outExp.getSecond();
                     first = outExp.getFirst();
                 }
 
-                System.out.println("while -- first: " + first);
-                System.out.println("while -- second: " + second);
+                //System.out.println("while -- first: " + first);
+                //System.out.println("while -- second: " + second);
 
                 //Our combinatory is S(X1)(X2), as explained above
                 combExp = "S(" + findCombinator(args[count - 1], first) + ")(" + findCombinator(args[count - 1], second) + ")";
@@ -250,7 +250,7 @@ public class SKevaluator{
 
             //Decrease count, so next argument is considered
             count--;
-            System.out.println("In: " + in + ", Out: " + out + ", combExp: " + combExp + ", count: " + Integer.toString(count));
+            //System.out.println("In: " + in + ", Out: " + out + ", combExp: " + combExp + ", count: " + Integer.toString(count));
 
             //Next iteration must form our newly found expression out of the next argument
             //So, we set our out expression to what we just found and the process is repeated
@@ -274,6 +274,10 @@ public class SKevaluator{
             String line = reader.readLine();
 
             while(line != null){
+                //Parse line
+
+
+
                 writer.write(line + "\n");
 
                 line = reader.readLine();

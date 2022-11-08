@@ -100,13 +100,13 @@ public class Expression {
     public String getFirst(){
         //Get's last argument
         String second = this.getSecond();
-        System.out.println("getFirst() -- second = " + second);
+        //System.out.println("getFirst() -- second = " + second);
         //Gets location of last argument
         int secondLoc = expression.lastIndexOf(second);
-        System.out.println("getFirset() -- secondLoc = " + Integer.toString(secondLoc));
+        //System.out.println("getFirst() -- secondLoc = " + Integer.toString(secondLoc));
         //Forms substring which represents the rest of the expression
         String first = expression.substring(0, secondLoc);
-        System.out.println("getFirst() -- first = " + first);
+        //System.out.println("getFirst() -- first = " + first);
         
         return first;
     }

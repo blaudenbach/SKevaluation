@@ -25,7 +25,10 @@ public class UserInterface {
                 System.out.println("Enter the desired output:");
                 String output = reader.nextLine();
 
-                System.out.println("Combinator expression: " + sk.findCombinator(input, output));
+                String expression = sk.findCombinator(input, output);
+
+                System.out.println("Combinator expression: " + expression);
+                System.out.println("Evaluation: " + sk.evaluate(expression + input));
             }
             else if(choice == 3){
                 System.out.println("Enter input filename:");

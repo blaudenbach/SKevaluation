@@ -8,7 +8,7 @@ public class KCombinator {
         String[] params = getParameters(s);
 
         String rest = getRest(params, s);
-        System.out.println("K eval -- rest:" + rest);
+        //System.out.println("K eval -- rest:" + rest);
         return params[0] + rest;
 
     }
@@ -56,12 +56,12 @@ public class KCombinator {
                 count++;
                 i += obj.length() - 1;
 
-                System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
+                //System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
             }
             else{
                 params[count] = Character.toString(c);
                 count++;
-                System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
+                //System.out.println("K -- param, count: " + params[count-1] + ", " + Integer.toString(count));
             }
 
             if(count == 2){
