@@ -164,11 +164,112 @@ public class SKevaluator{
             }
         }
 
+        int outCount = 0;
+
+        //Find number of arguments in "in"
+        //Iterate through string and evaluate
+        for(int i = 0; i < out.length(); i++){
+            //Get character at position
+            char c = out.charAt(i);
+            //Ignore closed parentheses
+            if(c == ')'){
+                continue;
+            }
+            //If open parenthesis, get everything inside parentheses and increment count
+            else if(c == '('){
+                int open = 1;
+                int closed = 0;
+                int pos = i;
+
+                //Get everything until # of closed parentheses equals # of open parentheses
+                while(closed < open){
+                    char p = out.charAt(pos);
+
+                    if(p == '(' && pos == i){
+                        pos++;
+                        continue;
+                    }
+                    else if(p == '('){
+                        open++;
+                    }
+                    else if(p == ')'){
+                        closed++;
+                    }
+
+                    pos++;
+                }
+
+                i = pos;
+                outCount++;
+            }
+            //If anything else, increment count
+            else{
+                outCount++;
+            }
+        }
+
+        //System.out.println("Number of arguments in input: " + Integer.toString(count));
+
+        //We now know how many arguments, so fill an array with them
+        //Similar to above step, except an array is filled
+        //These represent the x1,x2,...,xn
+        //Create and fill array of arguments
+        String[] outArgs = new String[outCount];
+        outCount = 0;
+        for(int i = 0; i < out.length(); i++){
+            char c = out.charAt(i);
+
+            if(c == ')'){
+                continue;
+            }
+            else if(c == '('){
+                int open = 1;
+                int closed = 0;
+                String obj = "";
+                int pos = i;
+
+                while(closed < open){
+                    char p = out.charAt(pos);
+
+                    if((p == '(') && (pos == i)){
+                        obj += p;
+                        pos++;
+                        continue;
+                    }
+                    else if(p == '('){
+                        open++;
+                    }
+                    else if(p == ')'){
+                        closed++;
+                    }
+
+                    obj += p;
+                    pos++;
+                }
+
+                outArgs[outCount] = obj;
+                outCount++;
+                i += obj.length() - 1;
+            }
+            else{
+                outArgs[outCount] = Character.toString(c);
+                outCount++;
+            }
+        }
+
         //If count is 1, remove unneccessary parentheses
         //For instance, (a) becomes a. Does not do anything to (ab)
         if(count == 1 && args[0].length() == 3){
             if(args[0].charAt(0) == '('){
                 args[0] = args[0].substring(1, args[0].length() - 1);
+            }
+        }
+
+        //If outCount is 1, remove unneccessary parentheses
+        //For instance, (a) becomes a. Does not do anything to (ab)
+        if(outCount == 1 && outArgs[0].length() == 3){
+            if(outArgs[0].charAt(0) == '('){
+                outArgs[0] = outArgs[0].substring(1, outArgs[0].length() - 1);
             }
         }
 
@@ -210,6 +311,17 @@ public class SKevaluator{
         //System.out.println("Number of parameters: " + Integer.toString(count));
         //System.out.println("params Array: " + Arrays.toString(args));
         //Continues until all arguments x1,x2,...,xn have been considered
+        //Conditionals to make output shorter (test-cases)
+        if(outCount == 1 && count == 2 && outArgs[0].equals(args[0])){
+            return "K";
+        }
+        else if(count == 3 && out.equals(args[0] + args[2] + "(" + args[1] + args[2] + ")")){
+            return "S";
+        }
+        else if(outCount == 2 && count == 1 && outArgs[0].equals(args[0]) && outArgs[1].equals(args[0])){
+            return "S(SKK)(SKK)";
+        }
+        
         while(count > 0){
             //Set the expression we wish to form
             outExp.setExpression(out);
