@@ -431,7 +431,13 @@ public class SKevaluator{
 
                 String combinator = this.findCombinator(prevPos, pos);
 
-                writer.write(combinator + "|" + prevPos + "|" + pos + "|\n");
+                Expression evaluation = new Expression();
+                evaluation.setExpression(this.evaluate(combinator + prevPos));
+                evaluation.deparenthesize();
+
+                boolean works = pos.equals(evaluation.getExpression());
+
+                writer.write(combinator + "|" + prevPos + "|" + pos + "|" + works + "|\n");
 
                 line = reader.readLine();
                 lineNum++;
