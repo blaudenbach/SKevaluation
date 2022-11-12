@@ -1,0 +1,5 @@
+1|ABCDEFGHabcdefghoooooooooooooooooooooooooooooooostuvwxyzSTUVWXYZ|-|
+2|ABCDEFGHabcdeoghooooofoooooooooooooooooooooooooostuvwxyzSTUVWXYZ|1|
+3|ABCDEFGHabcdeoghooooofoooooooooooooowooooooooooostuvoxyzSTUVWXYZ|2|
+4|ABCDEFGHabcdeoohooooofoooooooogooooowooooooooooostuvoxyzSTUVWXYZ|3|
+5|ABCDEFGHabcdeoohooooofoooooooogVoooowooooooooooostuvoxyzSTUoWXYZ|4|
