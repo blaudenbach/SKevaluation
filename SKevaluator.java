@@ -374,7 +374,16 @@ public class SKevaluator{
     }
 
     public String readFile(String inName){
-        String outName = "results.txt";
+        String outName;
+        if(inName.equals("positions.txt")){
+            outName = "posResults.txt";
+        }
+        else if(inName.equals("foolsmate.txt")){
+            outName = "fmResults.txt";
+        }
+        else{
+            outName = "results.txt";
+        }
         BufferedReader reader;
 
         try{
