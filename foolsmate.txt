@@ -1,5 +1,5 @@
-1|ABCDEFGHabcdefghoooooooooooooooooooooooooooooooostuvwxyzSTUVWXYZ|-|
-2|ABCDEFGHabcdeoghooooofoooooooooooooooooooooooooostuvwxyzSTUVWXYZ|1|
-3|ABCDEFGHabcdeoghooooofoooooooooooooowooooooooooostuvoxyzSTUVWXYZ|2|
-4|ABCDEFGHabcdeoohooooofoooooooogooooowooooooooooostuvoxyzSTUVWXYZ|3|
-5|ABCDEFGHabcdeoohooooofoooooooogVoooowooooooooooostuvoxyzSTUoWXYZ|4|
+1|ABCDEFGHabcdefgh(32o)rtuvwxyzRTUVWXYZ|-|
+2|ABCDEFGHabcdeogh(5o)f(26o)rtuvwxyzRTUVWXYZ|1|
+3|ABCDEFGHabcdeogh(5o)f(14o)w(11o)rtuvoxyzRTUVWXYZ|2|
+4|ABCDEFGHabcde(2o)h(5o)f(8o)g(5o)w(11o)rtuvoxyzRTUVWXYZ|3|
+5|ABCDEFGHabcde(2o)h(5o)f(8o)gV(4o)w(11o)rtuvoxyzRTUoWXYZ|4|

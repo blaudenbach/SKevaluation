@@ -111,15 +111,48 @@ public class Expression {
         return first;
     }
 
-    public boolean containsParenthesis(){
-        return (expression.contains("(")) || (expression.contains(")"));
+    public int getNumParentheses(){
+        int numParentheses = 0;
+
+        for(int i = 0; i < expression.length(); i++){
+            if(expression.charAt(i) == '(' || expression.charAt(i) == ')'){
+                numParentheses++;
+            }
+        }
+
+        return numParentheses;
     }
 
     public void deparenthesize(){
-        while(containsParenthesis()){
+        int checkedParentheses = 0;
+        while(this.getNumParentheses() != checkedParentheses){
+            checkedParentheses = 0;
+            System.out.println(this.getExpression());
             for(int i = 0; i < expression.length(); i++){
                 char c = expression.charAt(i);
                 if(c == '(' || c == ')'){
+                    if(c == '('){
+                        int t = Character.getNumericValue(expression.charAt(i+1));
+                        if(t >= 1 && t <= 9){
+                            checkedParentheses++;
+                            continue;
+                        }
+                    }
+                    if(c == ')'){
+                        int t;
+                        try{
+                            t = Character.getNumericValue(expression.charAt(i-2));
+                            System.out.println(expression.charAt(i-2));
+                        }
+                        catch(Exception e){
+                            t = -1;
+                            System.out.println("Invalid index");
+                        }
+                        if(t >= 1 && t<= 9){
+                            checkedParentheses++;
+                            continue;
+                        }
+                    }
                     StringBuilder sb = new StringBuilder(expression);
                     sb.deleteCharAt(i);
                     expression = sb.toString();
@@ -127,6 +160,7 @@ public class Expression {
                 }
             }
         }
+        System.out.println(this.getNumParentheses() + "" + checkedParentheses);
     }
 
 }

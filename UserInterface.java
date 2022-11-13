@@ -28,7 +28,12 @@ public class UserInterface {
                 String expression = sk.findCombinator(input, output);
 
                 System.out.println("Combinator expression: " + expression);
-                System.out.println("Evaluation: " + sk.evaluate(expression + input));
+                String eval = sk.evaluate(expression + input);
+                Expression evalExp = new Expression();
+                evalExp.setExpression(eval);
+                System.out.println("Evaluation before deparenthesize: " + evalExp.getExpression());
+                evalExp.deparenthesize();
+                System.out.println("Evaluation after deparenthesize: " + evalExp.getExpression());
             }
             else if(choice == 3){
                 System.out.println("Enter input filename:");

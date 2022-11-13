@@ -106,7 +106,8 @@ public class SKevaluator{
                     pos++;
                 }
 
-                i = pos;
+                
+                i = pos - 1;
                 count++;
             }
             //If anything else, increment count
@@ -199,7 +200,7 @@ public class SKevaluator{
                     pos++;
                 }
 
-                i = pos;
+                i = pos - 1;
                 outCount++;
             }
             //If anything else, increment count
@@ -208,7 +209,7 @@ public class SKevaluator{
             }
         }
 
-        //System.out.println("Number of arguments in input: " + Integer.toString(count));
+        //System.out.println("Number of arguments in output: " + Integer.toString(outCount));
 
         //We now know how many arguments, so fill an array with them
         //Similar to above step, except an array is filled
@@ -318,11 +319,17 @@ public class SKevaluator{
         else if(count == 3 && out.equals(args[0] + args[2] + "(" + args[1] + args[2] + ")")){
             return "S";
         }
+        else if(out.equals(in)){
+            return "SKK";
+        }
         else if(outCount == 2 && count == 1 && outArgs[0].equals(args[0]) && outArgs[1].equals(args[0])){
             return "S(SKK)(SKK)";
         }
         
         while(count > 0){
+            if(count > 1){
+                System.out.println(count);
+            }
             //Set the expression we wish to form
             outExp.setExpression(out);
             //System.out.println("while -- out: " + out);
