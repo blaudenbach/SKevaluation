@@ -127,7 +127,7 @@ public class Expression {
         int checkedParentheses = 0;
         while(this.getNumParentheses() != checkedParentheses){
             checkedParentheses = 0;
-            System.out.println(this.getExpression());
+            //System.out.println(this.getExpression());
             for(int i = 0; i < expression.length(); i++){
                 char c = expression.charAt(i);
                 if(c == '(' || c == ')'){
@@ -142,11 +142,11 @@ public class Expression {
                         int t;
                         try{
                             t = Character.getNumericValue(expression.charAt(i-2));
-                            System.out.println(expression.charAt(i-2));
+                            //System.out.println(expression.charAt(i-2));
                         }
                         catch(Exception e){
                             t = -1;
-                            System.out.println("Invalid index");
+                            //System.out.println("Invalid index");
                         }
                         if(t >= 1 && t<= 9){
                             checkedParentheses++;
@@ -160,7 +160,7 @@ public class Expression {
                 }
             }
         }
-        System.out.println(this.getNumParentheses() + "" + checkedParentheses);
+        //System.out.println(this.getNumParentheses() + "" + checkedParentheses);
     }
 
 }
