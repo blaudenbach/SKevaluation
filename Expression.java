@@ -148,7 +148,7 @@ public class Expression {
                             t = -1;
                             //System.out.println("Invalid index");
                         }
-                        if(t >= 1 && t<= 9){
+                        if(t >= 1 && t<= 9 && (expression.charAt(i-1) == 'o')){
                             checkedParentheses++;
                             continue;
                         }

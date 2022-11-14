@@ -11,7 +11,7 @@ public class UserInterface {
         System.out.println("3 - Read positions from a data file");
         System.out.println("0 - Exit");
         int choice = Integer.parseInt(reader.nextLine());
-        while((choice == 1) || (choice == 2) || (choice == 3)){
+        while((choice == 1) || (choice == 2) || (choice == 3) || (choice == 4)){
 
             if(choice == 1){
                 System.out.println("Enter the expression:");
