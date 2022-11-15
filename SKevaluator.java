@@ -388,6 +388,9 @@ public class SKevaluator{
         else if(inName.equals("foolsmate.txt")){
             outName = "fmResults.txt";
         }
+        else if(inName.equals("onemove.txt")){
+            outName = "omResults.txt";
+        }
         else{
             outName = "results.txt";
         }
@@ -446,6 +449,8 @@ public class SKevaluator{
                 }
 
                 String combinator = this.findCombinator(prevPos, pos);
+
+                System.out.println("Combinator formed - beginning evaluation");
 
                 Expression evaluation = new Expression();
                 evaluation.setExpression(this.evaluate(combinator + prevPos));
